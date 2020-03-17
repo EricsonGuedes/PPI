@@ -11,7 +11,7 @@ import org.junit.Test;
 public class paisTeste {
 	
 	Pais pais, copia;
-	static int id = 13;
+	static int id = 0;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -23,11 +23,12 @@ public class paisTeste {
 			System.out.println(id);
 		}
 	
+
 	@Test
 	public void test00Carregar() {
 		System.out.println("carregar");
 		//para funcionar o cliente 1 deve ter sido carregado no banco por fora
-		Pais fixture = new Pais(11, "Egito", 98313500 , 1001049 );
+		Pais fixture = new Pais(1, "Brasil", 210147125 , 8515767 );
 		Pais novo = new Pais(1, null, 0, 0);
 		novo.carregar();
 		assertEquals("testa inclusao", novo, fixture);
@@ -46,8 +47,8 @@ public class paisTeste {
 	@Test
 	public void test02Atualizar() {
 		System.out.println("atualizar");
-		pais.setArea(999999);
-		pais.setPopulacao(999999);		
+		pais.setPopulacao(999999);
+		copia.setArea(999999);		
 		pais.atualizar();
 		pais.carregar();
 		assertEquals("testa atualizacao", pais, copia);
@@ -64,5 +65,27 @@ public class paisTeste {
 			pais.carregar();
 			assertEquals("testa exclusao", pais, copia);
 		}
+	
+	@Test
+	public void test04MaiorPopulacao() {
+		System.out.println("Maior Populacao");
+		System.out.println("carregar");
+		//para funcionar o cliente 1 deve ter sido carregado no banco por fora
+		Pais fixture = new Pais(2, "China", 1394550000,9596961);
+		Pais novo = new Pais(1, null, 0, 0);
+		novo.maiorPopulacao();
+		assertEquals("testa Maior População", novo, fixture);
+	}
+	
+	@Test
+	public void test04MenorArea() {
+		System.out.println("Maior Populacao");
+		System.out.println("carregar");
+		//para funcionar o cliente 1 deve ter sido carregado no banco por fora
+		Pais fixture = new Pais(10, "Alemanha", 82800000,356733);
+		Pais novo = new Pais(1, null, 0, 0);
+		novo.menorArea();
+		assertEquals("testa Maior População", novo, fixture);
+	}
 
 }

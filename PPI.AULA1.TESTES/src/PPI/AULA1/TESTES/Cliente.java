@@ -160,7 +160,7 @@ public class Cliente {
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
-		if (email == null) {
+		if (String.valueOf(email) == null) {
 			if (other.email != null)
 				return false;
 		} else if (!email.equals(other.email))

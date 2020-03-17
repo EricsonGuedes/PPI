@@ -10,14 +10,15 @@ import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
 
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class Pais {
-	
-	protected int id;
-	protected String nome;
-	protected long populacao;
-	protected double area;
+
+	private int id;
+	private String nome;
+	private long populacao;
+	private double area;
 	
 	//Construtores
 	
@@ -26,7 +27,6 @@ public class Pais {
 	}
 	
 	public Pais(int id, String nome, long populacao, double area) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.populacao = populacao;
@@ -235,5 +235,36 @@ public class Pais {
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
 		}
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pais other = (Pais) obj;
+		if (area == 0) {
+			if (other.area != 0)
+				return false;
+		} 
+		if (populacao == 0) {
+			if (other.populacao != 0)
+				return false;
+		} 
+		if (id != other.id)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Pais [id=" + id + ", nome=" + nome + ", populacao=" + populacao + ", area=" + area + "]";
 	}
 }
