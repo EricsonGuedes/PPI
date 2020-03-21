@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class paisTeste {
+public class PaisTeste {
 	
 	Pais pais, copia;
 	static int id = 0;

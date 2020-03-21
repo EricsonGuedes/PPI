@@ -188,10 +188,10 @@ public class Pais {
 	}
 		
 	public void menorArea() {
-		String sqlSelect = "SELECT * FROM país ORDER BY area ASC LIMIT 0,1";
+		String menorArea = "SELECT * FROM país ORDER BY area ASC LIMIT 0,1";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = obtemConexao();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+				PreparedStatement stm = conn.prepareStatement(menorArea);) {
 			stm.setInt(1, getId());
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
