@@ -21,23 +21,22 @@ public class PaisService {
 			dao.excluir(id);
 		}
 		
-		@SuppressWarnings("static-access")
 		public Pais carregar(int id){
 			return dao.carregar(id);
 		}
 		
 		@SuppressWarnings({ "rawtypes", "static-access" })
-		public ArrayList maiorPopulacao(Pais pais) {
+		public ArrayList maiorPopulacao() {
 			return dao.buscaMaiorPopulacao();
 		}
 		
 		@SuppressWarnings({ "rawtypes", "static-access" })
-		public ArrayList menorArea(ArrayList pais) {
+		public ArrayList menorArea() {
 			return dao.buscaMenorArea();
 		}
 		
 		@SuppressWarnings("static-access")
-		public Pais[] vetor3(Pais pais) {
+		public Pais[] vetor3() {
 			return dao.vetor3();
 		}
 	}

@@ -11,7 +11,7 @@ import model.Pais;
 public class PaisDAO {
 	
 	public static int criar(Pais pais) {
-		String sqlInsert = "INSERT INTO cliente(nome, populacao, area) VALUES (?, ?, ?)";
+		String sqlInsert = "INSERT INTO país(nome, populacao, area) VALUES (?, ?, ?)";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
@@ -35,7 +35,7 @@ public class PaisDAO {
 	}
 
 	public void atualizar(Pais pais) {
-		String sqlUpdate = "UPDATE cliente SET nome=?, fone=?, email=? WHERE id=?";
+		String sqlUpdate = "UPDATE país SET nome=?, populacao=?, area=? WHERE id=?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
@@ -50,7 +50,7 @@ public class PaisDAO {
 	}
 
 	public void excluir(int id) {
-		String sqlDelete = "DELETE FROM cliente WHERE id = ?";
+		String sqlDelete = "DELETE FROM país WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
@@ -61,33 +61,33 @@ public class PaisDAO {
 		}
 	}
 
-	public static Pais carregar(int id) {
-		Pais pais = new Pais();
-		pais.setId(id);
-		String sqlSelect = "SELECT nome, populacao, area FROM cliente WHERE cliente.id = ?";
-		// usando o try with resources do Java 7, que fecha o que abriu
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-			stm.setInt(1, pais.getId());
-			try (ResultSet rs = stm.executeQuery();) {
-				if (rs.next()) {
-					stm.setString(1, pais.getNome());
-					stm.setLong(2, pais.getPopulacao());
-					stm.setDouble(3, pais.getArea());
-				} else {
-					pais.setId(-1);
-					pais.setNome(null);
-					pais.setPopulacao(0);
-					pais.setArea(0);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} catch (SQLException e1) {
-			System.out.print(e1.getStackTrace());
-		}
-		return pais;
-	}
+	
+	public Pais carregar(int id) {
+        Pais pais = new Pais();
+        String sqlSelect = "SELECT * FROM país WHERE país.id = ?";
+        // usando o try with resources do Java 7, que fecha o que abriu
+        try (Connection conn = ConnectionFactory.obtemConexao();
+                PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+            stm.setInt(1, id);
+            try (ResultSet rs = stm.executeQuery();) {
+                if (rs.next()) {
+                    pais.setNome(rs.getString("nome"));
+                    pais.setPopulacao(rs.getLong("populacao"));
+                    pais.setArea(rs.getDouble("area"));
+                } else {
+                    pais.setId(-1);
+                    pais.setNome(null);
+                    pais.setPopulacao(0);
+                    pais.setArea(0);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e1) {
+            System.out.print(e1.getStackTrace());
+        }
+        return pais;
+    }
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static ArrayList buscaMaiorPopulacao() {
@@ -133,10 +133,10 @@ public class PaisDAO {
 	
 	public static Pais[] vetor3() {
 		Pais pais = null;
-		Pais[] vetor = new Pais [3];
-		int count = 3;
-		String sqlSelect = "SELECT id, nome, populacao, area FROM pais limit 3";
-		
+		Pais[] vetor = new Pais[3];
+		int count = 0;
+		String sqlSelect = "SELECT id, nome, populacao, area FROM país limit 3";
+		// usando o try with resources do Java 7, quefecha o queabriu
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
@@ -145,7 +145,7 @@ public class PaisDAO {
 					String nome = rs.getString("nome");
 					Long populacao = rs.getLong("populacao");
 					Double area = rs.getDouble("area");
-					pais = new Pais(id,nome,populacao,area);
+					pais = new Pais(id, nome, populacao, area);
 					vetor[count++] = pais;
 				}
 			} catch (SQLException e) {
@@ -156,6 +156,7 @@ public class PaisDAO {
 		}
 		return vetor;
 	}
+
 }
 	
 					

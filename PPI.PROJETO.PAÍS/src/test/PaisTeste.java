@@ -1,17 +1,20 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
-import dao.PaisDAO;
 import model.Pais;
 import service.PaisService;
+
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class PaisTeste {
 	Pais pais, copia;
+	PaisService paisService;
 	static int id = 0;
 
 	/*
@@ -24,61 +27,103 @@ public class PaisTeste {
 	 * Além disso, a ordem de execução dos testes é importante; por
 	 * isso a anotação FixMethodOrder logo acima do nome desta classe
 	 */
-
+	
+	@Before
+	public void setUp() throws Exception {
+		System.out.println("setup");
+		pais = new Pais();
+		pais.setId(id);
+		pais.setNome("Espanha");
+		pais.setPopulacao(145123541);
+		pais.setArea(45878475);
+		copia = new Pais();
+		copia.setId(id);
+		copia.setNome("Espanha");
+		copia.setPopulacao(145123541);
+		copia.setArea(45878475);
+		paisService = new PaisService();
+		System.out.println(pais);
+		System.out.println(copia);
+		System.out.println(id);
+	}
+	
 	@Test
 	public void test00Carregar() {
 		System.out.println("carregar");
-		System.out.println(PaisDAO.carregar(1));
-	}
-	
-	@Test
-	public void test01Vetor() {
-		System.out.println("vetor");
-		model.Pais[] vetor = PaisDAO.vetor3();
-		for (model.Pais pais : vetor) {
-			System.out.println(pais);
-		}
-	}
-	
-
-	@Test
-	public void test03Carregar() {
-		System.out.println("criar");
-		Pais pais = new Pais(0, "Espanha", 46524943L, 504030.0);
-		PaisService.criar(pais);
+		//para funcionar o cliente 1 deve ter sido carregado no banco por fora
+		Pais teste = new Pais();
+		teste.setId(0);
+		teste.setNome("Brasil");
+		teste.setPopulacao(210147125);
+		teste.setArea(8515767.00);
+		PaisService novoService = new PaisService();
+		Pais novo = novoService.carregar(1);
+		System.out.println(teste);
+		System.out.println(novo);
+		assertEquals("testa inclusao", novo, teste);
+		
 	}
 
-	
-	/**
 	@Test
 	public void test01Criar() {
 		System.out.println("criar");
-		PaisDAO.criar(nomePais, populacaoPais, areaPais);
-		id = cliente.getId();
+		id = paisService.criar(pais);
 		System.out.println(id);
 		copia.setId(id);
-		assertEquals("testa criacao", cliente, copia);
+		System.out.println(pais);
+		assertEquals("testa criacao", pais, copia);
 	}
+
 	@Test
 	public void test02Atualizar() {
 		System.out.println("atualizar");
-		cliente.setFone("999999");
-		copia.setFone("999999");		
-		cliente.atualizar();
-		cliente.carregar();
-		assertEquals("testa atualizacao", cliente, copia);
+		pais.setArea(9000000);
+		copia.setArea(9000000);		
+		paisService.atualizar(pais);
+		pais = paisService.carregar(pais.getId());
+		System.out.println(copia);
+		System.out.println(pais);
 	}
+
 	@Test
 	public void test03Excluir() {
 		System.out.println("excluir");
 		copia.setId(-1);
 		copia.setNome(null);
-		copia.setFone(null);
-		copia.setEmail(null);
-		cliente.excluir();
-		cliente.carregar();
-		assertEquals("testa exclusao", cliente, copia);
-	}**/
-
-
+		copia.setPopulacao(0);
+		copia.setArea(0);
+		paisService.excluir(id);
+		pais = paisService.carregar(id);
+		assertEquals("testa exclusao", pais, copia);
+	}
+	
+	@Test
+	public void test04maiorpopu�acao() {
+		System.out.println("Maior Populacao");
+		
+		
+	}
+	
+	@Test
+	public void test05menorArea() {
+		System.out.println("Maior Populacao");
+		System.out.println(paisService.maiorPopulacao());
+		
+	}
+	
+	@Test
+	public void test05PaisMenor() {
+		System.out.println("Busca do pa�s menor");
+		System.out.println(paisService.menorArea());
+		System.out.println("--------------------------------------------------------------------------------------------");
+	}
+	
+	@Test
+	public void test02OutroVetor() {
+		System.out.println("outro");
+		Pais[] vetor = paisService.vetor3();
+		for (Pais pais : vetor) {
+			System.out.println(pais);
+		}
+	}
 }

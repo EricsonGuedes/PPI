@@ -1,6 +1,6 @@
 package model;
 
-public class Pais {
+public class Pais   {
 	
 	private int id;
 	private String nome;
