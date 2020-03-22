@@ -60,6 +60,7 @@ public class PaisTeste {
 		Pais novo = novoService.carregar(1);
 		System.out.println(teste);
 		System.out.println(novo);
+		System.out.println("----------------------------------------------------------------------");
 		assertEquals("testa inclusao", novo, teste);
 		
 	}
@@ -81,8 +82,6 @@ public class PaisTeste {
 		copia.setArea(9000000);		
 		paisService.atualizar(pais);
 		pais = paisService.carregar(pais.getId());
-		System.out.println(copia);
-		System.out.println(pais);
 	}
 
 	@Test
@@ -97,25 +96,19 @@ public class PaisTeste {
 		assertEquals("testa exclusao", pais, copia);
 	}
 	
-	@Test
-	public void test04maiorpopuçacao() {
-		System.out.println("Maior Populacao");
-		
-		
-	}
 	
 	@Test
 	public void test05menorArea() {
 		System.out.println("Maior Populacao");
 		System.out.println(paisService.maiorPopulacao());
-		
+		System.out.println("----------------------------------------------------------------------");
 	}
 	
 	@Test
 	public void test05PaisMenor() {
 		System.out.println("Busca do país menor");
 		System.out.println(paisService.menorArea());
-		System.out.println("--------------------------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------");
 	}
 	
 	@Test
@@ -124,6 +117,7 @@ public class PaisTeste {
 		Pais[] vetor = paisService.vetor3();
 		for (Pais pais : vetor) {
 			System.out.println(pais);
+			System.out.println("----------------------------------------------------------------------");
 		}
 	}
 }

@@ -49,6 +49,7 @@ public class PaisDAO {
 		}
 	}
 
+	
 	public void excluir(int id) {
 		String sqlDelete = "DELETE FROM país WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -61,33 +62,38 @@ public class PaisDAO {
 		}
 	}
 
+
 	
 	public Pais carregar(int id) {
-        Pais pais = new Pais();
-        String sqlSelect = "SELECT * FROM país WHERE país.id = ?";
-        // usando o try with resources do Java 7, que fecha o que abriu
-        try (Connection conn = ConnectionFactory.obtemConexao();
-                PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-            stm.setInt(1, id);
-            try (ResultSet rs = stm.executeQuery();) {
-                if (rs.next()) {
-                    pais.setNome(rs.getString("nome"));
-                    pais.setPopulacao(rs.getLong("populacao"));
-                    pais.setArea(rs.getDouble("area"));
-                } else {
-                    pais.setId(-1);
-                    pais.setNome(null);
-                    pais.setPopulacao(0);
-                    pais.setArea(0);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } catch (SQLException e1) {
-            System.out.print(e1.getStackTrace());
-        }
-        return pais;
-    }
+		Pais pais = new Pais();
+		pais.setId(id);
+		String sqlSelect = "SELECT nome, populacao, area FROM país WHERE país.id = ?";
+		// usando o try with resources do Java 7, que fecha o que abriu
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, pais.getId());
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					pais.setNome(rs.getString("nome"));
+					pais.setPopulacao(rs.getLong("populacao"));
+					pais.setArea(rs.getDouble("area"));
+				} else {
+					pais.setId(-1);
+					pais.setNome(null);
+					pais.setPopulacao(0);
+					pais.setArea(0);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return pais;
+	}
+
+
+
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static ArrayList buscaMaiorPopulacao() {
