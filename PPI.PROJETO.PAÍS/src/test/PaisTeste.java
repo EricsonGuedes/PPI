@@ -82,6 +82,7 @@ public class PaisTeste {
 		copia.setArea(9000000);		
 		paisService.atualizar(pais);
 		pais = paisService.carregar(pais.getId());
+		assertEquals("testa criacao", pais, copia);
 	}
 
 	@Test
