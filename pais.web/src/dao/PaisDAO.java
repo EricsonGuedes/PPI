@@ -9,7 +9,7 @@ import dao.ConnectionFactory;
 import model.Pais;
 
 public class PaisDAO {
-	
+
 	public static int criar(Pais pais) {
 		String sqlInsert = "INSERT INTO país(nome, populacao, area) VALUES (?, ?, ?)";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -49,7 +49,7 @@ public class PaisDAO {
 		}
 	}
 
-	
+
 	public void excluir(int id) {
 		String sqlDelete = "DELETE FROM país WHERE id = ?";
 		// usando o try with resources do Java 7, que fecha o que abriu
@@ -63,7 +63,7 @@ public class PaisDAO {
 	}
 
 
-	
+
 	public Pais carregar(int id) {
 		Pais pais = new Pais();
 		pais.setId(id);
@@ -94,49 +94,49 @@ public class PaisDAO {
 
 
 
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static ArrayList buscaMaiorPopulacao() {
 		ArrayList maiorPopulacao = new ArrayList();
 		String sqlSelect = "SELECT * FROM país ORDER BY populacao DESC LIMIT 1";
-				try (Connection conn = ConnectionFactory.obtemConexao();
-						PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-					try (ResultSet rs = stm.executeQuery();) {
-						if (rs.next()) {
-							maiorPopulacao.add(rs.getString("nome"));
-							maiorPopulacao.add(rs.getString("populacao"));
-							maiorPopulacao.add(rs.getString("area"));
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				} catch (SQLException e1) {
-					System.out.print(e1.getStackTrace());
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					maiorPopulacao.add(rs.getString("nome"));
+					maiorPopulacao.add(rs.getString("populacao"));
+					maiorPopulacao.add(rs.getString("area"));
 				}
-				return maiorPopulacao;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return maiorPopulacao;
 	}
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static ArrayList buscaMenorArea() {
 		ArrayList menorArea = new ArrayList();
 		String sqlSelect = "SELECT * FROM país ORDER BY area ASC LIMIT 1";
-				try (Connection conn = ConnectionFactory.obtemConexao();
-						PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
-					try (ResultSet rs = stm.executeQuery();) {
-						if (rs.next()) {
-							menorArea.add(rs.getString("nome"));
-							menorArea.add(rs.getString("populacao"));
-							menorArea.add(rs.getString("area"));
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				} catch (SQLException e1) {
-					System.out.print(e1.getStackTrace());
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					menorArea.add(rs.getString("nome"));
+					menorArea.add(rs.getString("populacao"));
+					menorArea.add(rs.getString("area"));
 				}
-				return menorArea;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return menorArea;
 	}
-	
+
 	public static Pais[] vetor3() {
 		Pais pais = null;
 		Pais[] vetor = new Pais[3];
@@ -164,8 +164,8 @@ public class PaisDAO {
 	}
 
 }
-	
-					
-					
-				
-				
+
+
+
+
+

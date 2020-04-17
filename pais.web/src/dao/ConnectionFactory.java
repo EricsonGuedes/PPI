@@ -12,7 +12,7 @@ public class ConnectionFactory {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	// Obtem conexção com o banco de dados
 	public static Connection obtemConexao() throws SQLException {
 		return DriverManager

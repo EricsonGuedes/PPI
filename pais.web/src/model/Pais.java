@@ -1,12 +1,12 @@
 package model;
 
 public class Pais   {
-	
+
 	private int id;
 	private String nome;
 	private long populacao;
 	private double area;
-	
+
 	public Pais() {		
 	}
 	public Pais(int id, String nome, long populacao, double area) {
@@ -15,7 +15,7 @@ public class Pais   {
 		this.populacao = populacao;
 		this.area = area;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Pais [id=" + id + ", nome=" + nome + ", populacao=" + populacao + ", area=" + area + "]";
@@ -78,8 +78,8 @@ public class Pais   {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
+
+
+
 }

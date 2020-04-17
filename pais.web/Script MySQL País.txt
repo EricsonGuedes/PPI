@@ -1,7 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS `mundo`;
 USE `mundo` ;
 
-CREATE TABLE IF NOT EXISTS `mundo`.`País` (
+CREATE TABLE IF NOT EXISTS `mundo`.`país` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `populacao` BIGINT NOT NULL,

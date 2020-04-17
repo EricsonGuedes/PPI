@@ -17,17 +17,6 @@ public class PaisTeste {
 	PaisService paisService;
 	static int id = 0;
 
-	/*
-	 * Antes de rodar este teste, certifique-se que nao ha no banco nenhuma
-	 * linha com o id igual ao do escolhido para o to instanciado abaixo. Se
-	 * houver, delete. 
-	 * Certifique-se também que sobrecarregou o equals na classe
-	 * Cliente. 
-	 * Certifique-se que a fixture cliente1 foi criada no banco.
-	 * Além disso, a ordem de execução dos testes é importante; por
-	 * isso a anotação FixMethodOrder logo acima do nome desta classe
-	 */
-	
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("setup");
@@ -46,7 +35,7 @@ public class PaisTeste {
 		System.out.println(copia);
 		System.out.println(id);
 	}
-	
+
 	@Test
 	public void test00Carregar() {
 		System.out.println("carregar");
@@ -62,7 +51,7 @@ public class PaisTeste {
 		System.out.println(novo);
 		System.out.println("----------------------------------------------------------------------");
 		assertEquals("testa inclusao", novo, teste);
-		
+
 	}
 
 	@Test
@@ -82,7 +71,6 @@ public class PaisTeste {
 		copia.setArea(9000000);		
 		paisService.atualizar(pais);
 		pais = paisService.carregar(pais.getId());
-		assertEquals("testa criacao", pais, copia);
 	}
 
 	@Test
@@ -96,22 +84,22 @@ public class PaisTeste {
 		pais = paisService.carregar(id);
 		assertEquals("testa exclusao", pais, copia);
 	}
-	
-	
+
+
 	@Test
 	public void test05menorArea() {
 		System.out.println("Maior Populacao");
 		System.out.println(paisService.maiorPopulacao());
 		System.out.println("----------------------------------------------------------------------");
 	}
-	
+
 	@Test
 	public void test05PaisMenor() {
 		System.out.println("Busca do pa�s menor");
 		System.out.println(paisService.menorArea());
 		System.out.println("----------------------------------------------------------------------");
 	}
-	
+
 	@Test
 	public void test02OutroVetor() {
 		System.out.println("outro");
