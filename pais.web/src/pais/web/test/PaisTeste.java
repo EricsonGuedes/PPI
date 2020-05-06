@@ -1,14 +1,13 @@
-package test;
+package pais.web.test;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
 import model.Pais;
 import service.PaisService;
-
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 

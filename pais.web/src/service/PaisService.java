@@ -2,8 +2,8 @@ package service;
 
 import java.util.ArrayList;
 
-import dao.PaisDAO;
-import model.Pais;
+import dao.*;
+import model.*;;
 
 public class PaisService {
 	PaisDAO dao = new PaisDAO();

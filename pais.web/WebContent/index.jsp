@@ -18,49 +18,13 @@
 	<!-- Barra superior com os menus de navegacao -->
 	<c:import url="Menu.jsp" />
 
-	<!-- Container Principal -->
-	<div id="main" class="container">
-		<h3 class="page-header">Incluir País</h3>
+	 <!-- Container Principal -->
+    <div id="main" class="container">
+        <h3 class="page-header">Cadastros</h3>
 
-
-		<!-- Formulario para inclusao de países -->
-		<form action="ManterPais.do" method="get">
-
-			<!-- area de campos do form -->
-
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label for="Pais">País</label> <input type="text"
-						class="form-control" name="nome" id="nome" required
-						maxlength="100" placeholder="nome do país">
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="form-group col-md-6">
-					<label for="Populaçao">População</label> <input type="text"
-						class="form-control" name="populacao" required maxlength="60"
-						placeholder="População">
-				</div>
-
-				<div class="form-group col-md-6">
-					<label for="Area">Área</label> <input type="text"
-						class="form-control" name="area" required maxlength="60"
-						placeholder="Área do país">
-				</div>
-			</div>
-			<hr>
-			<div id="actions" class="row">
-				<div class="col-md-12">
-					<button type="submit" class="btn btn-primary" name="acao"
-						value="Criar">Salvar</button>
-					<a href="index.jsp" class="btn btn-default">Cancelar</a>
-				</div>
-			</div>
-		</form>
-	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
