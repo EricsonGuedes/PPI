@@ -25,16 +25,8 @@ public class ServletController extends HttpServlet {
 			logRequest = new FileWriter(new File("C:\\Users\\erics/logreqPais.log"), true);
 			logRequest.append("Chegou um request para: " +request.getParameter("command") + "LocalAdress: " + request.getLocalAddr() + "\n" + "Name: " + request.getLocalName() +"\n"+ "port: " + request.getLocalPort() +"\n" + "hora: " + Calendar.getInstance().getTime() + "\n");
 			logRequest.flush();
-			
-			//System.out.println("Chegou um request para: " +request.getParameter("command"));
-			//System.out.println("LocalAdress: " + request.getLocalAddr());
-			//System.out.println("Name: " + request.getLocalName());
-			//System.out.println("port: " + request.getLocalPort());
-			//System.out.println("hora: " + Calendar.getInstance().getTime());
-
-
-				Command comando = (Command)Class.forName("command."+request.getParameter("command")).newInstance();
-				comando.executar(request, response);
+			Command comando = (Command)Class.forName("command."+request.getParameter("command")).newInstance();
+			comando.executar(request, response);
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {
 			e.printStackTrace();

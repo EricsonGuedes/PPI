@@ -11,10 +11,8 @@ public class UsuarioDAO {
 	public boolean validar(Usuario usuario) {
 		String sqlSelect = "SELECT username, password FROM usuario "
 				+ "WHERE username = ? and password = ?";
-		// pega a conexão em um try normal para que ela não seja fechada
 		try {
 			Connection conn = ConnectionFactory.obtemConexao();
-			// usando o try with resources do Java 7, que fecha o que abriu
 			try (PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 				stm.setString(1, usuario.getUsername());
 				stm.setString(2, usuario.getPassword());

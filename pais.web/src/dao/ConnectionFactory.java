@@ -5,8 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-	
-	//singleton da conexão - thread safe
+
 	private static final ThreadLocal<Connection> conn = new ThreadLocal<>();
 
 	static {
@@ -17,7 +16,6 @@ public class ConnectionFactory {
 		}
 	}
 
-	// Obtém conexão com o banco de dados
 	public static Connection obtemConexao() throws SQLException {
 		if (conn.get() == null){
 			conn.set(DriverManager
@@ -25,8 +23,7 @@ public class ConnectionFactory {
 		}
 		return conn.get();
 	}
-	
-	//Fecha a conexão - usado no servlet destroy
+
 	public static void fecharConexao() throws SQLException {
 		if(conn.get() != null){
 			conn.get().close();

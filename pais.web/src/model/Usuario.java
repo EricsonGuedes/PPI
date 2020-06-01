@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 
 public class Usuario implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return "Usuario [username=" + username + ", password=" + password + "]";
 	}
-	
+
 
 
 }

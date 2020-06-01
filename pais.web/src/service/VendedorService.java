@@ -8,7 +8,7 @@ import model.Pais;
 
 public class VendedorService {
 	PaisDAO dao;
-	
+
 	public VendedorService(){
 		dao = new PaisDAO();
 	}
